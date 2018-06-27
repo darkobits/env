@@ -1,0 +1,48 @@
+{
+  "name": "@darkobits/env",
+  "description": "Functional environment variable getter/parser.",
+  "version": "0.1.0",
+  "author": "darkobits",
+  "license": "WTFPL",
+  "keywords": [
+    "process",
+    "env",
+    "environment"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkobits/env.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/env.js",
+  "scripts": {
+    "clean": "del dist",
+    "check:styles": "tslint --project tsconfig.json --format codeFrame",
+    "check:types": "tsc --emitDeclarationOnly && del **/*.spec.d.ts",
+    "test": "jest",
+    "prebuild": "run-p clean check:*",
+    "build": "babel src --extensions='.ts' --ignore='**/*.spec.ts,**/*.d.ts' --out-dir=dist --source-maps=inline",
+    "prebump": "npm run build",
+    "bump": "standard-version",
+    "bump:beta": "npm run prebump && standard-version --prerelease=beta"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.51",
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "@babel/preset-stage-3": "^7.0.0-beta.51",
+    "@babel/preset-typescript": "^7.0.0-beta.51",
+    "@types/jest": "^23.1.2",
+    "@types/node": "^10.3.6",
+    "babel-core": "^7.0.0-bridge.0",
+    "del-cli": "^1.1.0",
+    "jest": "^23.2.0",
+    "npm-run-all": "^4.1.3",
+    "standard-version": "^4.4.0",
+    "tslint": "^5.10.0",
+    "tslint-xo": "^0.8.0",
+    "typescript": "^2.9.1"
+  }
+}
