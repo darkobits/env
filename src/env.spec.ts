@@ -9,7 +9,7 @@ describe('env', () => {
   describe('when provided a non-string argument', () => {
     it('should throw an error', () => {
       expect(() => {
-        env(null);
+        env(undefined);
       }).toThrow('[env] Expected first argument to be of type "string"');
     });
   });
