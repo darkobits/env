@@ -21,7 +21,7 @@
     "build": "nps build",
     "test": "nps test",
     "bump": "nps bump",
-    "prepare": "nps prepare"
+    "prepare": "npm dedupe && nps prepare"
   },
   "devDependencies": {
     "@darkobits/ts-unified": "^1.1.5",
