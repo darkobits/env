@@ -24,8 +24,8 @@
     "prepare": "npm dedupe && nps prepare"
   },
   "devDependencies": {
-    "@darkobits/ts-unified": "^1.1.5",
-    "@types/jest": "^24.0.9",
-    "@types/node": "^11.9.5"
+    "@darkobits/ts-unified": "^1.6.0",
+    "@types/jest": "^24.0.13",
+    "@types/node": "^11.13.13"
   }
 }
