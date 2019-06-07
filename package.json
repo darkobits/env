@@ -1,7 +1,7 @@
 {
   "name": "@darkobits/env",
   "description": "Functional environment variable getter/parser.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "darkobits",
   "license": "WTFPL",
   "keywords": [
