@@ -30,9 +30,7 @@ $ npm i @darkobits/env
 
 This package's default export is a function with the following signature:
 
-```ts
-env(variableName: string, strict: boolean = false);
-```
+### `env(variableName: string, strict: boolean = false): any`
 
 Keeping in mind that the values in `process.env` [may only be strings](https://nodejs.org/api/process.html#process_process_env), let's assume `process.env` looks like this:
 
@@ -76,9 +74,27 @@ process = null;
 env('FOO')         //=> throws
 ```
 
-### `env.has`
+### `env.has(variableName: string): boolean`
 
-This helper is a shorthand for `Object.keys(process.env).includes(x)`. It returns `true` if the provided variable name exists in `process.env` and `false` otherwise. Useful when you don't care what the value of a variable is, only whether it is set or not.
+This helper predicate is a shorthand for `Object.keys(process.env).includes(x)`. It returns `true` if the provided variable name exists in `process.env` and `false` otherwise. Useful when you don't care what the value of a variable is, only whether it is set or not.
+
+### `env.eq(variableName: string, value: any, strict?: boolean = false): boolean`
+
+This helper predicate is a shorthand for `env(variableName) === value`. It returns `true` if the provided variable name exists in `process.env` and is equal to the provided value and `false` otherwise. Useful when you need to quickly test the value of an environment variable. A third `strict` argument may be set to `true` to cause `env.eq` to throw if the provided variable does not exist in `process.env`.
+
+**Note:** When comparing against non-primitives (objects, arrays), env.eq will serialize the provided `value` and compare it against the serialized (re: string) form of the environment variable.
+
+Using our example `process.env` object from above:
+
+```ts
+import env from '@darkobits/env';
+
+env.eq('FOO', 'foo') //=> true
+env.eq('BAR', 42)    //=> true
+env.eq('BAR', null)  //=> false
+env.eq('BAZ', true)  //=> true
+env.eq('JSON', {kittens: true}) //=> true
+```
 
 ## &nbsp;
 <p align="center">

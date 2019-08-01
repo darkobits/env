@@ -1,4 +1,39 @@
-function env(variableName: string, strict = false): any {
+export interface Env {
+  /**
+   * Accepts an environment variable name. Returns the parsed value of the
+   * variable, if it is set.
+   *
+   * Additionally accepts an optional `strict` argument that, when `true`, will
+   * cause env to throw if the provided variable does not exist in process.env.
+   */
+  (variableName: string, strict?: boolean): any;
+
+  /**
+   * Returns `true` if the provided variable name is set and `false` otherwise.
+   *
+   * Shorthand for `Object.keys(process.env).includes(variableName)`.
+   */
+  has(variableName: string): boolean;
+
+  /**
+   * Accepts a variable name and a value and returns `true` if the variable name
+   * is strictly equal to the provided value.
+   *
+   * Additionally accepts an optional `strict` argument that, when `true`, will
+   * cause env.eq to throw if the provided variable does not exist in
+   * process.env.
+   *
+   * Note: When comparing against non-primitives (objects, arrays), env.eq will
+   * serialize the provided `value` and compare it against the serialized (re:
+   * string) form of the environment variable.
+   *
+   * Shorthand for `env('SOME_VAR') === testValue`.
+   */
+  eq(variableName: string, value: any, strict?: boolean): boolean;
+}
+
+
+const env: Env = (variableName, strict = false) => {
   // Throw if first argument is not a string. Although normal objects may have
   // non-string keys (such as Symbols) process.env may not.
   if (typeof variableName !== 'string') { // tslint:disable-line strict-type-predicates
@@ -50,11 +85,20 @@ function env(variableName: string, strict = false): any {
      */
     return process.env[variableName];
   }
-}
+};
 
 
-env.has = (variableName: string) => {
+env.has = variableName => {
   return env(variableName) !== undefined;
+};
+
+
+env.eq = (variableName, value, strict = false) => {
+  if (typeof value === 'object') {
+    return JSON.stringify(value) === JSON.stringify(env(variableName, strict));
+  }
+
+  return env(variableName, strict) === value;
 };
 
 

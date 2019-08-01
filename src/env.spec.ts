@@ -1,5 +1,8 @@
+import {Env} from './env';
+
+
 describe('env', () => {
-  let env: Function;
+  let env: Env;
 
   beforeEach(() => {
     jest.resetModules();
@@ -9,6 +12,7 @@ describe('env', () => {
   describe('when provided a non-string argument', () => {
     it('should throw an error', () => {
       expect(() => {
+        // @ts-ignore
         env(undefined);
       }).toThrow('[env] Expected first argument to be of type "string"');
     });
@@ -171,7 +175,7 @@ describe('env', () => {
 
 
 describe('env.has', () => {
-  let env: Function;
+  let env: Env;
 
   beforeEach(() => {
     jest.resetModules();
@@ -193,5 +197,44 @@ describe('env.has', () => {
 
     // @ts-ignore
     expect(env.has(key)).toBe(false);
+  });
+});
+
+
+describe('env.eq', () => {
+  let env: Env;
+
+  beforeEach(() => {
+    jest.resetModules();
+    env = require('./env'); // tslint:disable-line no-require-imports
+  });
+
+  it('should return `true` when the provided variable equals the provided value', () => {
+    const key = '___EQ_TRUE_TEST___';
+    const value = 'kittens';
+
+    process.env[key] = value;
+
+    expect(env.eq(key, value)).toBe(true);
+  });
+
+  it('should return `false` when the provided variable does not exist', () => {
+    const key = '___EQ_FALSE_TEST___';
+    const value = 'kittens';
+
+    process.env[key] = value;
+
+    expect(env.eq(key, 'bar')).toBe(false);
+  });
+
+  describe('comparing against non-primitives', () => {
+    it('should serialize values when comparing them', () => {
+      const key = '___EQ_OBJECT_TEST___';
+      const value = {foo: 'bar', baz: true, bar: jest.fn()};
+
+      process.env[key] = JSON.stringify(value);
+
+      expect(env.eq(key, value)).toBe(true);
+    });
   });
 });
