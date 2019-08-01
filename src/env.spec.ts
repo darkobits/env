@@ -3,7 +3,7 @@ describe('env', () => {
 
   beforeEach(() => {
     jest.resetModules();
-    env = require('./env').default; // tslint:disable-line no-require-imports
+    env = require('./env'); // tslint:disable-line no-require-imports
   });
 
   describe('when provided a non-string argument', () => {
@@ -100,7 +100,7 @@ describe('env', () => {
     });
   });
 
-  describe('when strict is true and the requested variable is not defined', () => {
+  describe('when strict is `true` and the requested variable is not defined', () => {
     it('should throw an error', () => {
       const variableName = '___UNDEFINED___';
       expect(() => {
@@ -144,7 +144,7 @@ describe('env', () => {
   });
 
   describe('when the requested variable is a serialized JSON blob', () => {
-    it('should return the deserialized value', () => {
+    it('should return the de-serialized value', () => {
       const key = '__JSON_TEST__';
       const value = {
         foo: 'bar',
@@ -166,5 +166,32 @@ describe('env', () => {
 
       expect(env(key)).toBe(value);
     });
+  });
+});
+
+
+describe('env.has', () => {
+  let env: Function;
+
+  beforeEach(() => {
+    jest.resetModules();
+    env = require('./env'); // tslint:disable-line no-require-imports
+  });
+
+  it('should return `true` when the provided variable exists', () => {
+    const key = '___HAS_TRUE_TEST__';
+    const value = 'kittens';
+
+    process.env[key] = value;
+
+    // @ts-ignore
+    expect(env.has(key)).toBe(true);
+  });
+
+  it('should return `false` when the provided variable does not exist', () => {
+    const key = '___HAS_FALSE_TEST__';
+
+    // @ts-ignore
+    expect(env.has(key)).toBe(false);
   });
 });

@@ -1,4 +1,4 @@
-export default function env(variableName: string, strict = false): any {
+function env(variableName: string, strict = false): any {
   // Throw if first argument is not a string. Although normal objects may have
   // non-string keys (such as Symbols) process.env may not.
   if (typeof variableName !== 'string') { // tslint:disable-line strict-type-predicates
@@ -38,7 +38,7 @@ export default function env(variableName: string, strict = false): any {
      * - Number-like string values to numbers.
      * - The string value 'true' to the boolean value true.
      * - The string value 'false' to the boolean false.
-     * - Any serialized data structures to their deserialized value.
+     * - Any serialized data structures to their de-serialized value.
      */
 
     // @ts-ignore
@@ -51,3 +51,11 @@ export default function env(variableName: string, strict = false): any {
     return process.env[variableName];
   }
 }
+
+
+env.has = (variableName: string) => {
+  return env(variableName) !== undefined;
+};
+
+
+export default env;

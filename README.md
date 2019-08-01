@@ -76,6 +76,10 @@ process = null;
 env('FOO')         //=> throws
 ```
 
+### `env.has`
+
+This helper is a shorthand for `Object.keys(process.env).includes(x)`. It returns `true` if the provided variable name exists in `process.env` and `false` otherwise. Useful when you don't care what the value of a variable is, only whether it is set or not.
+
 ## &nbsp;
 <p align="center">
   <br>
