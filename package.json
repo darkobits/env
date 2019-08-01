@@ -21,11 +21,11 @@
     "build": "nps build",
     "test": "nps test",
     "bump": "nps bump",
-    "prepare": "npm dedupe && nps prepare"
+    "prepare": "nps prepare"
   },
   "devDependencies": {
-    "@darkobits/ts-unified": "^1.6.0",
-    "@types/jest": "^24.0.13",
-    "@types/node": "^11.13.13"
+    "@darkobits/ts-unified": "^3.0.3",
+    "@types/jest": "^24.0.16",
+    "@types/node": "^12.6.8"
   }
 }
