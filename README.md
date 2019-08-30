@@ -3,10 +3,9 @@
 </a>
 <p align="center">
   <a href="https://www.npmjs.com/package/@darkobits/env"><img src="https://img.shields.io/npm/v/@darkobits/env.svg?style=flat-square"></a>
-  <a href="https://travis-ci.org/darkobits/env"><img src="https://img.shields.io/travis/darkobits/env.svg?style=flat-square"></a>
+  <a href="https://github.com/darkobits/env/actions"><img src="https://img.shields.io/endpoint?url=https://aws.frontlawn.net/ga-shields/darkobits/env&style=flat-square"></a>
   <a href="https://www.codacy.com/app/darkobits/env"><img src="https://img.shields.io/codacy/coverage/728590ddfc4d4658a170e37cd5d1b5d8.svg?style=flat-square"></a>
-  <a href="https://github.com/conventional-changelog/standard-version"><img src="https://img.shields.io/badge/conventional%20commits-1.0.0-027dc6.svg?style=flat-square"></a>
-  <a href="https://github.com/sindresorhus/xo"><img src="https://img.shields.io/badge/code_style-XO-e271a5.svg?style=flat-square"></a>
+  <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/conventional%20commits-1.0.0-FB5E85.svg?style=flat-square"></a>
 </p>
 
 A functional getter/parser for `process.env`.
