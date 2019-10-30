@@ -71,17 +71,16 @@ const env: Env = (variableName, strict = false) => {
      *
      * This will properly convert:
      * - Number-like string values to numbers.
-     * - The string value 'true' to the boolean value true.
-     * - The string value 'false' to the boolean false.
-     * - Any serialized data structures to their de-serialized value.
+     * - The string value 'true' to the boolean value `true`.
+     * - The string value 'false' to the boolean value `false`.
+     * - Any serialized data structures to its de-serialized value.
      */
-
     // @ts-ignore
     return JSON.parse(process.env[variableName]);
   } catch (err) {
     /**
-     * If JSON.parse fails, return the value. This will be the case for most
-     * string literal values.
+     * If JSON.parse fails, return the value as-is. This will be the case for
+     * most string literal values.
      */
     return process.env[variableName];
   }
