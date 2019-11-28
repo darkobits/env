@@ -29,7 +29,13 @@ $ npm i @darkobits/env
 
 This package's default export is a function with the following signature:
 
-### `env(variableName: string, strict: boolean = false): any`
+```ts
+interface Env {
+  (variableName: string, strict: boolean = false): any;
+  has(variableName: string): boolean;
+  eq(variableName: string, value: any, strict: boolean = false): boolean;
+}
+```
 
 Keeping in mind that the values in `process.env` [may only be strings](https://nodejs.org/api/process.html#process_process_env), let's assume `process.env` looks like this:
 
@@ -73,11 +79,18 @@ process = null;
 env('FOO')         //=> throws
 ```
 
-### `env.has(variableName: string): boolean`
+### `env.has`
 
 This helper predicate is a shorthand for `Object.keys(process.env).includes(x)`. It returns `true` if the provided variable name exists in `process.env` and `false` otherwise. Useful when you don't care what the value of a variable is, only whether it is set or not.
 
-### `env.eq(variableName: string, value: any, strict?: boolean = false): boolean`
+Using our example `process.env` object from above:
+
+```ts
+env.has('FOO') //=> true
+env.has('UNICORNS') //=> false
+```
+
+### `env.eq`
 
 This helper predicate is a shorthand for `env(variableName) === value`. It returns `true` if the provided variable name exists in `process.env` and is equal to the provided value and `false` otherwise. Useful when you need to quickly test the value of an environment variable. A third `strict` argument may be set to `true` to cause `env.eq` to throw if the provided variable does not exist in `process.env`.
 
@@ -95,8 +108,6 @@ env.eq('BAZ', true)  //=> true
 env.eq('JSON', {kittens: true}) //=> true
 ```
 
-## &nbsp;
-<p align="center">
-  <br>
-  <img width="22" height="22" src="https://cloud.githubusercontent.com/assets/441546/25318539/db2f4cf2-2845-11e7-8e10-ef97d91cd538.png">
-</p>
+<a href="#top">
+  <img src="https://user-images.githubusercontent.com/441546/69777002-41ac7380-1153-11ea-85a4-88184f8c9975.png" style="max-width: 100%;">
+</a>
