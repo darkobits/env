@@ -6,7 +6,7 @@ export interface Env {
    * Additionally accepts an optional `strict` argument that, when `true`, will
    * cause env to throw if the provided variable does not exist in process.env.
    */
-  (variableName: string, strict?: boolean): any;
+  <T = any>(variableName: string, strict?: boolean): T | undefined;
 
   /**
    * Returns `true` if the provided variable name is set and `false` otherwise.
@@ -33,11 +33,11 @@ export interface Env {
 }
 
 
-const env: Env = (variableName, strict = false) => {
-  // Throw if first argument is not a string. Although normal objects may have
-  // non-string keys (such as Symbols) process.env may not.
-  if (typeof variableName !== 'string') { // tslint:disable-line strict-type-predicates
-    throw new TypeError(`[env] Expected first argument to be of type "string", got "${typeof variableName}".`);
+const env: Env = <T = any>(variableName: keyof typeof process.env, strict = false) => {
+  // Throw if first argument is not a string or a number. Although normal
+  // objects may have exotic key types (ie: Symbols) process.env may not.
+  if (typeof variableName !== 'string' && typeof variableName !== 'number') { // tslint:disable-line strict-type-predicates
+    throw new TypeError(`[env] Expected first argument to be of type "string" or "number", got "${typeof variableName}".`);
   }
 
   // Throw if 'process' does not exist. (User might be in the browser.)
@@ -50,7 +50,7 @@ const env: Env = (variableName, strict = false) => {
     throw new TypeError(`[env] Expected "process" to be of type "object", got "${typeof process}".`);
   }
 
-  // Throw if 'process.env' does not exist.
+  // Throw if process.env does not exist.
   if (!Reflect.has(process, 'env')) {
     throw new Error('[env] "env" does not exist in object "process".');
   }
@@ -60,9 +60,17 @@ const env: Env = (variableName, strict = false) => {
     throw new TypeError(`[env] Expected "process.env" to be of type "object", got "${typeof process.env}".`);
   }
 
+  const value = process.env[variableName];
+
   // Throw if in strict mode and the requested variable name does not exist.
-  if (strict && !Reflect.has(process.env, variableName)) {
+  if (strict && value === undefined) {
     throw new Error(`[env] (Strict) "${variableName}" does not exist in object "process.env".`);
+  }
+
+  // This is primarily here to refine the type of `value` from
+  // `string | undefined` to `string`.
+  if (value === undefined) {
+    return value;
   }
 
   try {
@@ -73,16 +81,15 @@ const env: Env = (variableName, strict = false) => {
      * - Number-like string values to numbers.
      * - The string value 'true' to the boolean value `true`.
      * - The string value 'false' to the boolean value `false`.
-     * - Any serialized data structures to its de-serialized value.
+     * - Any serialized data structure to its de-serialized value.
      */
-    // @ts-ignore
-    return JSON.parse(process.env[variableName]);
+    return JSON.parse(value) as T;
   } catch (err) {
     /**
      * If JSON.parse fails, return the value as-is. This will be the case for
      * most string literal values.
      */
-    return process.env[variableName];
+    return value as unknown as T;
   }
 };
 
