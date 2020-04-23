@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/darkobits/env/compare/v1.3.0...v1.3.1) (2020-04-23)
+
+
+### Bug Fixes
+
+* Remove `undefined` from return type when `strict` is `true`. ([64f0d5f](https://github.com/darkobits/env/commit/64f0d5fc6fb055a9ff8603c98facb8fd5a7335f6))
+
 ## [1.3.0](https://github.com/darkobits/env/compare/v1.2.1...v1.3.0) (2020-04-23)
 
 
