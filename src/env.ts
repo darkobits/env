@@ -6,6 +6,7 @@ export interface Env {
    * Additionally accepts an optional `strict` argument that, when `true`, will
    * cause env to throw if the provided variable does not exist in process.env.
    */
+  <T = any>(variableName: string, strict: true): T;
   <T = any>(variableName: string, strict?: boolean): T | undefined;
 
   /**
