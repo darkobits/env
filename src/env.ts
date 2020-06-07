@@ -43,7 +43,7 @@ const env: Env = <T = any>(variableName: keyof typeof process.env, strict = fals
 
   // Throw if 'process' does not exist. (User might be in the browser.)
   if (typeof process === 'undefined') { // tslint:disable-line strict-type-predicates no-typeof-undefined
-    throw new Error('[env] Global "process" does not exist.');
+    throw new TypeError('[env] Global "process" does not exist.');
   }
 
   // Throw if process is a non-object.
@@ -85,7 +85,7 @@ const env: Env = <T = any>(variableName: keyof typeof process.env, strict = fals
      * - Any serialized data structure to its de-serialized value.
      */
     return JSON.parse(value) as T;
-  } catch (err) {
+  } catch {
     /**
      * If JSON.parse fails, return the value as-is. This will be the case for
      * most string literal values.

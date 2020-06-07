@@ -13,7 +13,7 @@ describe('env', () => {
     it('should throw an error', () => {
       expect(() => {
         // @ts-ignore
-        env(undefined);
+        env();
       }).toThrow('[env] Expected first argument to be of type "string"');
     });
   });
@@ -47,7 +47,7 @@ describe('env', () => {
     beforeEach(() => {
       ORIG_PROCESS = process;
       // @ts-ignore
-      process = true;
+      process = true; // eslint-disable-line no-global-assign
     });
 
     it('should throw an error', () => {
