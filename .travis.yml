@@ -1,8 +1,8 @@
-os: linux
 language: node_js
-node_js:
-  - 12
-npm_args: --ignore-scripts
+node_js: 12
+install: npm ci --ignore-scripts
 script:
-  - npx nps build
-  - npx nps test
+  - npx nps prepare
+  - npx nps test.coverage
+after_success:
+  - npx codacy-coverage -v < ./coverage/lcov.info
