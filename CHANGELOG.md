@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.3](https://github.com/darkobits/env/compare/v1.3.2...v1.3.3) (2020-12-16)
+
+
+### 🏗 Chores
+
+* Migrate to Travis CI. ([236c0fa](https://github.com/darkobits/env/commit/236c0fa29331be70c9398dba74760da25c0a2811))
+* Update dependencies. ([98dfa31](https://github.com/darkobits/env/commit/98dfa31cd326eb71865da9aeb2430a2289a34119))
+
+
+### 📖 Documentation
+
+* Update README. ([07ffb02](https://github.com/darkobits/env/commit/07ffb0292c75ae51b50bf1afaa6e4e1877560f7e))
+
 ### [1.3.2](https://github.com/darkobits/env/compare/v1.3.1...v1.3.2) (2020-06-07)
 
 ### [1.3.1](https://github.com/darkobits/env/compare/v1.3.0...v1.3.1) (2020-04-23)
