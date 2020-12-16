@@ -37,17 +37,17 @@ export interface Env {
 const env: Env = <T = any>(variableName: keyof typeof process.env, strict = false) => {
   // Throw if first argument is not a string or a number. Although normal
   // objects may have exotic key types (ie: Symbols) process.env may not.
-  if (typeof variableName !== 'string' && typeof variableName !== 'number') { // tslint:disable-line strict-type-predicates
+  if (typeof variableName !== 'string' && typeof variableName !== 'number') {
     throw new TypeError(`[env] Expected first argument to be of type "string" or "number", got "${typeof variableName}".`);
   }
 
   // Throw if 'process' does not exist. (User might be in the browser.)
-  if (typeof process === 'undefined') { // tslint:disable-line strict-type-predicates no-typeof-undefined
+  if (typeof process === 'undefined') {
     throw new TypeError('[env] Global "process" does not exist.');
   }
 
   // Throw if process is a non-object.
-  if (typeof process !== 'object') { // tslint:disable-line strict-type-predicates
+  if (typeof process !== 'object') {
     throw new TypeError(`[env] Expected "process" to be of type "object", got "${typeof process}".`);
   }
 
@@ -57,7 +57,7 @@ const env: Env = <T = any>(variableName: keyof typeof process.env, strict = fals
   }
 
   // Throw if process.env is a non-object.
-  if (typeof process.env !== 'object') { // tslint:disable-line strict-type-predicates
+  if (typeof process.env !== 'object') {
     throw new TypeError(`[env] Expected "process.env" to be of type "object", got "${typeof process.env}".`);
   }
 

@@ -18,14 +18,9 @@
   ],
   "main": "dist/env.js",
   "scripts": {
-    "build": "nps build",
-    "test": "nps test",
-    "bump": "nps bump",
     "prepare": "nps prepare"
   },
   "devDependencies": {
-    "@darkobits/ts-unified": "5.0.0-beta.18",
-    "@types/jest": "^25.2.3",
-    "@types/node": "^14.0.11"
+    "@darkobits/ts": "^0.2.0"
   }
 }

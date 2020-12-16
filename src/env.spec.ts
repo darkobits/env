@@ -6,7 +6,7 @@ describe('env', () => {
 
   beforeEach(() => {
     jest.resetModules();
-    env = require('./env'); // tslint:disable-line no-require-imports
+    env = require('./env');
   });
 
   describe('when provided a non-string argument', () => {
@@ -179,7 +179,7 @@ describe('env.has', () => {
 
   beforeEach(() => {
     jest.resetModules();
-    env = require('./env'); // tslint:disable-line no-require-imports
+    env = require('./env');
   });
 
   it('should return `true` when the provided variable exists', () => {
@@ -206,7 +206,7 @@ describe('env.eq', () => {
 
   beforeEach(() => {
     jest.resetModules();
-    env = require('./env'); // tslint:disable-line no-require-imports
+    env = require('./env');
   });
 
   it('should return `true` when the provided variable equals the provided value', () => {
