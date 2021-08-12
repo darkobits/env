@@ -13,7 +13,6 @@ A functional getter/parser for `process.env`.
 
 ## Features
 
-- Encourages just-in-time retrieval of environment variables.
 - Casts number-like values to numbers.
 - Casts `"true"` and `"false"` to booleans.
 - Parses JSON.
