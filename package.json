@@ -18,9 +18,9 @@
   ],
   "main": "dist/env.js",
   "scripts": {
-    "prepare": "nps prepare"
+    "prepare": "nr prepare"
   },
   "devDependencies": {
-    "@darkobits/ts": "^0.2.2"
+    "@darkobits/ts": "^0.7.11"
   }
 }
