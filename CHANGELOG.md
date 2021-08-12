@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.5](https://github.com/darkobits/env/compare/v1.3.4...v1.3.5) (2021-08-12)
+
+
+### 🏗 Chores
+
+* **deps:** Update dependencies. ([4ee0f49](https://github.com/darkobits/env/commit/4ee0f49a6049d0cc33240dc0fd7146c616b27817))
+* Update ci.yml. ([c0badd8](https://github.com/darkobits/env/commit/c0badd8ab999403811bfaceb75a94ddd30569ee0))
+
+
+### 📖 Documentation
+
+* Update README. ([dc2d79a](https://github.com/darkobits/env/commit/dc2d79a4d124137b3b58910dcc1b6d81421761cf))
+
 ### [1.3.4](https://github.com/darkobits/env/compare/v1.3.3...v1.3.4) (2020-12-21)
 
 
