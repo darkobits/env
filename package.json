@@ -21,6 +21,6 @@
     "prepare": "nr prepare"
   },
   "devDependencies": {
-    "@darkobits/ts": "^0.7.11"
+    "@darkobits/ts": "^0.13.15"
   }
 }
