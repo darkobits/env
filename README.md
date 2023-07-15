@@ -2,11 +2,11 @@
   <picture>
     <source
       media="(prefers-color-scheme: dark)"
-      srcset="https://github.com/darkobits/env/assets/441546/91ba1796-b274-4d8a-95bc-0b38f414910b"
+      srcset="https://github.com/darkobits/env/assets/441546/9007f1cb-fdcc-4caf-8db4-b0548ebecdd5"
       width="100%"
     >
     <img
-      src="https://github.com/darkobits/env/assets/441546/9fce66f2-a41e-47ef-8b99-7de225f98a31"
+      src="https://github.com/darkobits/env/assets/441546/7dea3c3f-eff6-41d5-8287-dccfffe966aa"
       width="100%"
     >
   </picture>
