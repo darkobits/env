@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/darkobits/env/compare/v1.3.5...v2.0.0) (2023-07-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This project is now published as ESM.
+
+### 🏗 Chores
+
+* **deps:** Update dependencies. ([a25bdf6](https://github.com/darkobits/env/commit/a25bdf6af14b07608a563059db6891ee422e072b))
+* Update LICENSE. ([36a3c7b](https://github.com/darkobits/env/commit/36a3c7b31d9e9cc615a1ec59bbc6ac0bafb12d14))
+
+
+### 📖 Documentation
+
+* Update README. ([c52d53e](https://github.com/darkobits/env/commit/c52d53ea54bf0bb5d77205f9e700784723bcb6ed))
+
+
+### 🛠 Refactoring
+
+* Publish as ESM. ([fa7ce28](https://github.com/darkobits/env/commit/fa7ce28b7380f2ef510eb54c316d62d4a72b3b28))
+
 ### [1.3.5](https://github.com/darkobits/env/compare/v1.3.4...v1.3.5) (2021-08-12)
 
 
