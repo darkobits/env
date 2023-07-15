@@ -1,12 +1,14 @@
-import {Env} from './env';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+
+import type { Env } from './env';
 
 
 describe('env', () => {
   let env: Env;
 
-  beforeEach(() => {
-    jest.resetModules();
-    env = require('./env');
+  beforeEach(async () => {
+    vi.resetModules();
+    env = (await import('./env')).default;
   });
 
   describe('when provided a non-string argument', () => {
@@ -17,6 +19,11 @@ describe('env', () => {
       }).toThrow('[env] Expected first argument to be of type "string"');
     });
   });
+
+  interface Foo {
+    [index: string]: any;
+    bar: string;
+  }
 
   describe('when "process" is not defined', () => {
     let ORIG_PROCESS: NodeJS.Process;
@@ -30,9 +37,10 @@ describe('env', () => {
       expect.assertions(1);
 
       try {
-        env('foo');
-      } catch (err) {
-        expect(err.message).toBe('[env] Global "process" does not exist.');
+        const foo = env<Foo>('foo');
+        console.log(foo);
+      } catch (err: any) {
+        expect(err?.message).toBe('[env] Global "process" does not exist.');
       }
     });
 
@@ -55,8 +63,8 @@ describe('env', () => {
 
       try {
         env('foo');
-      } catch (err) {
-        expect(err.message).toMatch('[env] Expected "process" to be of type "object"');
+      } catch (err: any) {
+        expect(err?.message).toMatch('[env] Expected "process" to be of type "object"');
       }
     });
 
@@ -177,9 +185,9 @@ describe('env', () => {
 describe('env.has', () => {
   let env: Env;
 
-  beforeEach(() => {
-    jest.resetModules();
-    env = require('./env');
+  beforeEach(async () => {
+    vi.resetModules();
+    env = (await import('./env')).default;
   });
 
   it('should return `true` when the provided variable exists', () => {
@@ -204,9 +212,9 @@ describe('env.has', () => {
 describe('env.eq', () => {
   let env: Env;
 
-  beforeEach(() => {
-    jest.resetModules();
-    env = require('./env');
+  beforeEach(async () => {
+    vi.resetModules();
+    env = (await import('./env')).default;
   });
 
   it('should return `true` when the provided variable equals the provided value', () => {
@@ -230,7 +238,7 @@ describe('env.eq', () => {
   describe('comparing against non-primitives', () => {
     it('should serialize values when comparing them', () => {
       const key = '___EQ_OBJECT_TEST___';
-      const value = {foo: 'bar', baz: true, bar: jest.fn()};
+      const value = {foo: 'bar', baz: true, bar: vi.fn()};
 
       process.env[key] = JSON.stringify(value);
 

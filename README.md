@@ -1,12 +1,42 @@
-<a href="#top" id="top">
-  <img src="https://user-images.githubusercontent.com/441546/102321952-36c9aa00-3f33-11eb-84f0-d568a5632e93.png" style="max-width: 100%">
-</a>
 <p align="center">
-  <a href="https://www.npmjs.com/package/@darkobits/env"><img src="https://img.shields.io/npm/v/@darkobits/env.svg?style=flat-square"></a>
-  <a href="https://github.com/darkobits/env/actions?query=workflow%3ACI"><img src="https://img.shields.io/github/workflow/status/darkobits/env/CI/master?style=flat-square"></a>
-  <a href="https://app.codecov.io/gh/darkobits/env/branch/master"><img src="https://img.shields.io/codecov/c/github/darkobits/env/master?style=flat-square"></a>
-  <a href="https://depfu.com/repos/github/darkobits/env"><img src="https://img.shields.io/depfu/darkobits/env?style=flat-square"></a>
-  <a href="https://conventionalcommits.org"><img src="https://img.shields.io/static/v1?label=commits&message=conventional&style=flat-square&color=398AFB"></a>
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="https://github.com/darkobits/env/assets/441546/91ba1796-b274-4d8a-95bc-0b38f414910b"
+      width="100%"
+    >
+    <img
+      src="https://github.com/darkobits/env/assets/441546/9fce66f2-a41e-47ef-8b99-7de225f98a31"
+      width="100%"
+    >
+  </picture>
+</p>
+<p align="center">
+  <a
+    href="https://www.npmjs.com/package/@darkobits/env"
+  ><img
+    src="https://img.shields.io/npm/v/@darkobits/env.svg?style=flat-square"
+  ></a>
+  <a
+    href="https://github.com/darkobits/env/actions?query=workflow%3Aci"
+  ><img
+    src="https://img.shields.io/github/actions/workflow/status/darkobits/env/ci.yml?style=flat-square"
+  ></a>
+  <a
+    href="https://depfu.com/repos/github/darkobits/env"
+  ><img
+    src="https://img.shields.io/depfu/darkobits/env?style=flat-square"
+  ></a>
+  <a
+    href="https://conventionalcommits.org"
+  ><img
+    src="https://img.shields.io/static/v1?label=commits&message=conventional&style=flat-square&color=398AFB"
+  ></a>
+  <a
+    href="https://firstdonoharm.dev"
+  ><img
+    src="https://img.shields.io/static/v1?label=license&message=hippocratic&style=flat-square&color=753065"
+  ></a>
 </p>
 
 A functional getter/parser for `process.env`.

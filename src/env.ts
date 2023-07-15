@@ -1,3 +1,11 @@
+type Primitive = string | number | boolean | null | undefined;
+
+type PlainObject = Record<any, Primitive>;
+
+type EnvironmentVariable = Primitive | PlainObject | Array<Primitive | PlainObject>;
+
+const parsedEnv: Record<string, EnvironmentVariable> = {};
+
 export interface Env {
   /**
    * Accepts an environment variable name. Returns the parsed value of the
@@ -6,8 +14,8 @@ export interface Env {
    * Additionally accepts an optional `strict` argument that, when `true`, will
    * cause env to throw if the provided variable does not exist in process.env.
    */
-  <T = any>(variableName: string, strict: true): T;
-  <T = any>(variableName: string, strict?: boolean): T | undefined;
+  <T extends EnvironmentVariable = string>(variableName: string, strict: true): T;
+  <T extends EnvironmentVariable = string>(variableName: string, strict?: boolean): T | undefined;
 
   /**
    * Returns `true` if the provided variable name is set and `false` otherwise.
@@ -34,7 +42,7 @@ export interface Env {
 }
 
 
-const env: Env = <T = any>(variableName: keyof typeof process.env, strict = false) => {
+const env: Env = <T extends EnvironmentVariable = string>(variableName: keyof typeof process.env, strict = false) => {
   // Throw if first argument is not a string or a number. Although normal
   // objects may have exotic key types (ie: Symbols) process.env may not.
   if (typeof variableName !== 'string' && typeof variableName !== 'number') {
@@ -61,17 +69,11 @@ const env: Env = <T = any>(variableName: keyof typeof process.env, strict = fals
     throw new TypeError(`[env] Expected "process.env" to be of type "object", got "${typeof process.env}".`);
   }
 
-  const value = process.env[variableName];
+  const rawValue = process.env[variableName];
 
   // Throw if in strict mode and the requested variable name does not exist.
-  if (strict && value === undefined) {
+  if (strict && rawValue === undefined) {
     throw new Error(`[env] (Strict) "${variableName}" does not exist in object "process.env".`);
-  }
-
-  // This is primarily here to refine the type of `value` from
-  // `string | undefined` to `string`.
-  if (value === undefined) {
-    return value;
   }
 
   try {
@@ -84,14 +86,16 @@ const env: Env = <T = any>(variableName: keyof typeof process.env, strict = fals
      * - The string value 'false' to the boolean value `false`.
      * - Any serialized data structure to its de-serialized value.
      */
-    return JSON.parse(value) as T;
+    parsedEnv[variableName] = JSON.parse(rawValue as string);
   } catch {
     /**
      * If JSON.parse fails, return the value as-is. This will be the case for
      * most string literal values.
      */
-    return value as unknown as T;
+    parsedEnv[variableName] = rawValue;
   }
+
+  return parsedEnv[variableName] as T;
 };
 
 
